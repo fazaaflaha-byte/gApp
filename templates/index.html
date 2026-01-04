@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Email Sender Python</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      padding: 40px;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 8px;
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      padding: 8px;
+    }
+
+    button {
+      padding: 10px;
+      width: 100%;
+      background: #2ecc71;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Kirim Email Otomatis (Max 300)</h2>
+
+    <form method="POST" action="/">
+      <label>Subject</label>
+      <input type="text" name="subject" required>
+
+      <label>Isi Email</label>
+      <textarea name="body" rows="6" required>
+Halo,
+Ini adalah email otomatis dari sistem.
+Terima kasih.
+  </textarea>
+
+      <label>Daftar Email (1 per baris)</label>
+      <textarea name="emails" rows="8" required></textarea>
+
+      <button type="submit">Kirim Email</button>
+    </form>
+
+
+    {% if message %}
+    <div class="msg">{{ message }}</div>
+    {% endif %}
+  </div>
+
+</body>
+
+</html>
