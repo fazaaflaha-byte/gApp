@@ -2,16 +2,15 @@ from flask import Flask, request, render_template
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import os
 
 app = Flask(__name__)
 
-EMAIL_PENGIRIM = os.environ.get("EMAIL_PENGIRIM")
-APP_PASSWORD = os.environ.get("APP_PASSWORD")
+EMAIL_PENGIRIM = "forfunbrother48@gmail.com"
+APP_PASSWORD = "iulr teja jhnr eqwe"  # APP PASSWORD, BUKAN PASSWORD AKUN
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    message = None
+    message = ""
 
     if request.method == "POST":
         subject = request.form.get("subject")
@@ -24,7 +23,7 @@ def index():
             message = "❌ Maksimal 300 email"
         else:
             try:
-                server = smtplib.SMTP("smtp.gmail.com", 587)
+                server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
                 server.starttls()
                 server.login(EMAIL_PENGIRIM, APP_PASSWORD)
 
@@ -37,7 +36,7 @@ def index():
                     server.send_message(msg)
 
                 server.quit()
-                message = f"✅ Berhasil kirim ke {len(email_list)} email"
+                message = f"✅ Berhasil mengirim ke {len(email_list)} email"
 
             except Exception as e:
                 message = f"❌ Error: {e}"
@@ -45,4 +44,4 @@ def index():
     return render_template("index.html", message=message)
 
 if __name__ == "__main__":
-    app.run()
+     app.run(host="0.0.0.0", port=5000)
