@@ -5,8 +5,8 @@ from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
 
-EMAIL_PENGIRIM = "forfunbrother48@gmail.com"
-APP_PASSWORD = "iulr teja jhnr eqwe"  # APP PASSWORD, BUKAN PASSWORD AKUN
+EMAIL_PENGIRIM = ""
+APP_PASSWORD = ""  # APP PASSWORD, BUKAN PASSWORD AKUN
 
 @app.route("/", methods=["GET", "POST"])
 def index():
